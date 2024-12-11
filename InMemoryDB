@@ -1,0 +1,31 @@
+class KeyValueDatabase:
+    def __init__(self):
+        self.store = {} 
+        self.transaction = None 
+
+    def begin_transaction(self):
+        if self.transaction is not None:
+            raise Exception("A transaction is already in progress.")
+        self.transaction = {}
+
+    def put(self, key, value):
+        if self.transaction is None:
+            raise Exception("No active transaction. Begin a transaction first.")
+        self.transaction[key] = value
+
+    def get(self, key):
+        if self.transaction is not None and key in self.transaction:
+            return self.transaction[key]
+        return self.store.get(key)
+
+    def commit(self):
+        if self.transaction is None:
+            raise Exception("No active transaction to commit.")
+        for key, value in self.transaction.items():
+            self.store[key] = value
+        self.transaction = None
+
+    def rollback(self):
+        if self.transaction is None:
+            raise Exception("No active transaction to rollback.")
+        self.transaction = None
