@@ -1,9 +1,9 @@
 class KeyValueDatabase:
     def __init__(self):
-        self.store = {} 
-        self.transaction = None 
+        self.store = {}  # Main key-value store
+        self.transaction = None  # Active transaction, if any
 
-    def begin_transaction(self):
+    def begin(self):
         if self.transaction is not None:
             raise Exception("A transaction is already in progress.")
         self.transaction = {}
@@ -20,7 +20,7 @@ class KeyValueDatabase:
 
     def commit(self):
         if self.transaction is None:
-            raise Exception("No active transaction to commit.")
+            raise Exception("There is not a transaction to commit.")
         for key, value in self.transaction.items():
             self.store[key] = value
         self.transaction = None
@@ -29,3 +29,36 @@ class KeyValueDatabase:
         if self.transaction is None:
             raise Exception("No active transaction to rollback.")
         self.transaction = None
+
+def main():
+    # Create database
+    db = KeyValueDatabase()
+
+    # put transaction or throw exception
+    try:
+        db.put("transaction1", 10) 
+    except Exception as e:print(e)
+
+    print(db.get("a"))  # Should print None
+
+    # Begin a transaction
+    db.begin()
+    db.put("transaction1", 15)
+    print(db.get("transaction1"))  # print 15
+
+    db.put("transaction2", 10)
+    print(db.get("transaction2"))  #print 10
+
+    # Rollback transaction
+    db.rollback()
+    print(db.get("transaction1"))  # Should print None
+    print(db.get("transaction2"))  # Should print None
+
+    # Begin another transaction
+    db.begin()
+    db.put("transaction1", 30)
+    db.commit()
+    print(db.get("transaction1"))  # Should print 30
+
+if __name__ == "__main__":
+    main()
