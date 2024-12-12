@@ -4,8 +4,8 @@
 This project mimics transactions to allow “all or nothing” updates to databases to prevent dirty writes. 
 For example: For building a money transfer application a transaction woul look like this:
   When A initiates a transfer of X dollars to B, two things need to happen:
-    X dollars should be deducted from A’s account
-    X dollars should be added to B’s account
+    - X dollars should be deducted from A’s account
+    - X dollars should be added to B’s account
 
 # Features
 
@@ -28,20 +28,20 @@ Isolation: Transactions should not be “visible” to get(), until the transact
   You can use an online Python interpreter or an IDE with web support to test your code without having Python installed locally. Here are a few easy-to-use options:
 
   Option 1 (Online IDE) 
-    Replit
-      Visit: https://replit.com/
-      Create a new Python project.
-      Copy and paste your code into the editor with test code.
-      Run the code directly in the browser.
+    - Replit
+      - Visit: https://replit.com/
+      - Create a new Python project.
+      - Copy and paste your code into the editor with test code.
+      - Run the code directly in the browser.
 
   Option 2:
-    1. Install Visual Studio Code
+    - Install Visual Studio Code
       Download and install VS Code from https://code.visualstudio.com/.
-    2. Open code in Visual Studio Code
-    3. Install python extension in extensions tab
-    4. Open DataProcess repository from folder
-    5. Run DataProcess.py 
-    6. Adjust main with different inputs as needed
+    - Open code in Visual Studio Code
+    - Install python extension in extensions tab
+    - Open DataProcess repository from folder
+    - Run DataProcess.py 
+    - Adjust main with different inputs as needed
 
   This will run the code and allow you to test it.
 
