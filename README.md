@@ -20,8 +20,8 @@ Isolation: Transactions should not be “visible” to get(), until the transact
 # Setup
 1. Clone the repository:
 
-   git clone (giturl provided)
-   cd your-folder
+   - git clone (giturl provided)
+   - cd your-folder
 
 # Running the Code
 
